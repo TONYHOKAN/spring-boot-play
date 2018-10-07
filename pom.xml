@@ -106,6 +106,12 @@
             </properties>
         </profile>
         <profile>
+            <id>testing</id>
+            <properties>
+                <profileActive>testing</profileActive>
+            </properties>
+        </profile>
+        <profile>
             <id>production</id>
             <properties>
                 <profileActive>production</profileActive>
@@ -120,6 +126,7 @@
                 <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>config.local/*</exclude>
+                    <exclude>config.testing/*</exclude>
                     <exclude>config.dev/*</exclude>
                     <exclude>config.production/*</exclude>
                 </excludes>

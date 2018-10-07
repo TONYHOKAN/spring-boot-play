@@ -81,4 +81,10 @@ public class UserController
 		userMapper.delete(id);
 		return;
 	}
+
+	@GetMapping("helloWorld")
+	public String helloWorld()
+	{
+		return "Hellow World!";
+	}
 }
