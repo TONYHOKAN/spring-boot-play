@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * check what annotation we have https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations
  */
 @Configuration
-@Profile("local,dev") // only enable swagger in dev env
+@Profile({"local", "dev"}) // only enable swagger in dev env
 @EnableSwagger2
 public class SwaggerConfig
 {
