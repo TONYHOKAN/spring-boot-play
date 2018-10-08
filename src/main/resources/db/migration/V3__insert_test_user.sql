@@ -1,1 +1,1 @@
-INSERT INTO `spring_boot`.`user` (`name`, `age`) VALUES ('cyliu', '30');
+INSERT INTO `user` (`name`, `age`) VALUES ('cyliu', '30');
