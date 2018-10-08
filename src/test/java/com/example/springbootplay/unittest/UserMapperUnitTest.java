@@ -1,41 +1,54 @@
 package com.example.springbootplay.unittest;
 
+
 import com.example.springbootplay.BaseIntegrationTest;
 import com.example.springbootplay.mapper.UserMapper;
 import com.example.springbootplay.model.User;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 /**
  * Created by Tony Ng on 6/10/2018.
  */
-//@Transactional // do not persist any data created during test
+@Transactional
 public class UserMapperUnitTest extends BaseIntegrationTest
 {
-	private Long mockUserId;
 
 	@Autowired
-	UserMapper userMapper;
+	private UserMapper userMapper;
+
+	private User mockUserA;
+	private User mockUserB;
 
 	@Before
-	public void setUp()
+	public void before() throws Exception
 	{
-		User user = new User();
-		user.setAge(29);
-		user.setName("hokan");
-		mockUserId = userMapper.insert(user);
+		mockUserA = new User();
+		mockUserA.setName("cyliu");
+		mockUserA.setAge(30);
+
+		mockUserB = new User();
+		mockUserB.setName("hokan");
+		mockUserB.setAge(15);
+
+		userMapper.insert(mockUserA);
+		userMapper.insert(mockUserB);
 	}
 
 	@Test
 	public void testFindUserById()
 	{
-		User user = userMapper.findById(mockUserId);;
+		User findUser = userMapper.findById(mockUserA.getId());
 
-		Assert.assertEquals(29, user.getAge().intValue());
-		Assert.assertNotNull("hokan", user.getName());
+		Assert.assertEquals(findUser.getName(), mockUserA.getName());
+		Assert.assertEquals(findUser.getAge(), mockUserA.getAge());
 	}
 
 	@Test
@@ -47,5 +60,20 @@ public class UserMapperUnitTest extends BaseIntegrationTest
 		long id = userMapper.insert(user);
 
 		Assert.assertNotNull(id);
+	}
+
+	@Test
+	public void testGetAllUser()
+	{
+		List<User> users = userMapper.findAll();
+
+		Assert.assertEquals("testUserMapperGetAllUser in correct user size", 2, users.size());
+		Assert.assertEquals(mockUserA.getName(), users.get(0).getName());
+		Assert.assertEquals(mockUserB.getName(), users.get(1).getName());
+	}
+
+	@After
+	public void after()
+	{
 	}
 }

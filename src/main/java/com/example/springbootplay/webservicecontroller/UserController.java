@@ -56,8 +56,8 @@ public class UserController
 	@PostMapping("")
 	public User createUser(@RequestBody User user)
 	{
-		long newObjectId = userMapper.insert(user);
-		return userMapper.findById(newObjectId);
+		userMapper.insert(user);
+		return userMapper.findById(user.getId());
 	}
 
 	@ApiOperation(value = "updateUser", notes = "Update User")
@@ -69,8 +69,8 @@ public class UserController
 	public User updateUser(@PathVariable Long id, @RequestBody User user)
 	{
 		user.setId(id);
-		long newObjectId = userMapper.update(user);
-		return userMapper.findById(newObjectId);
+		userMapper.update(user);
+		return userMapper.findById(user.getId());
 	}
 
 	@ApiOperation(value = "deleteUser", notes = "Delete User")

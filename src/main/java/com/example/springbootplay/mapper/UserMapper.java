@@ -26,7 +26,7 @@ import java.util.List;
 public interface UserMapper
 {
 	@Insert("INSERT INTO USER(NAME, AGE) VALUES(#{name}, #{age})")
-	@Options(useGeneratedKeys = true, keyProperty = "id")
+	@Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
 	long insert(User user);
 
 	@Update("UPDATE USER SET age=#{age}, name=#{name} WHERE ID = #{id}")
