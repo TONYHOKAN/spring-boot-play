@@ -72,6 +72,9 @@ We using spring-actuator to provide health check endpoint
 
 `curl localhost:8888/actuator/health`
 
+ref: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+
+
 # Swagger2 for API doc
 
 Swagger2 default enable for probile `local,dev`
@@ -79,3 +82,7 @@ Swagger2 default enable for probile `local,dev`
 after server start go `http://localhost:8888/swagger-ui.html`
 
 # Project Design
+
+# Config properties
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
