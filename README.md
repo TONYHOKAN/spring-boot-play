@@ -79,9 +79,27 @@ ref: https://docs.spring.io/spring-boot/docs/current/reference/html/production-r
 
 # Swagger2 for API doc
 
-Swagger2 default enable for probile `local,dev`
+Swagger2 default enable for profile `local,dev`
 
 after server start go `http://localhost:8888/swagger-ui.html`
+
+# SSL
+
+create key: `keytool -genkey -alias selfsigned_localhost_ssl -storetype PKCS12 -keyalg RSA -keysize 2048  -keystore local_ssl.p12 -validity 3650 -keypass local_ssl -storepass local_ssl`
+
+place to resources/
+
+uncomment below in application.properties
+
+```
+#server.ssl.enabled=true
+#http.port=8888
+#server.port=8444
+#server.ssl.key-store=classpath:local_ssl.p12
+#server.ssl.key-store-password=local_ssl
+#server.ssl.key-store-type=PKCS12
+#server.ssl.key-password=local_ssl
+```
 
 # Project Design
 

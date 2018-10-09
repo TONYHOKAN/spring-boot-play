@@ -152,6 +152,19 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.1.4</version>
             </plugin>
+            <!-- maven's resource filtering is corrupting your p12 file-->
+            <!-- https://stackoverflow.com/questions/17298126/generated-certificate-stops-working-when-moved-to-resources-folder-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>p12</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>pfx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>pem</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
