@@ -19,6 +19,8 @@ When using `.war`, we should have `ServletInitializer extends SpringBootServletI
 
 To control what final file format build to, we can control in `pom.xml` properties `<packaging>jar</packaging>`
 
+ref: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-create-a-deployable-war-file
+
 # Set up local dev env
 
 1. `cp -R src\main\resources\config.dev src\main\resources\config.local`
