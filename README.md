@@ -101,6 +101,13 @@ uncomment below in application.properties
 #server.ssl.key-password=local_ssl
 ```
 
+
+# Hotswap
+
+Make use of `spring-boot-devtools`, when start with `mvn clean install -P local spring-boot:run`, we can call `mvn install` in another console, the app will restart
+
+In Intellij, we need start the project with run configuration `spring-boot-play [spring-boot:run]`, create you own if not exist, then follow https://stackoverflow.com/a/12744431/5824101 to enable auto compile 
+
 # Project Design
 
 # Config properties
