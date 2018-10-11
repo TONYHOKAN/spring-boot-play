@@ -129,6 +129,7 @@
             <id>testing</id>
             <properties>
                 <profileActive>testing</profileActive>
+                <maven.test.skip>false</maven.test.skip>
             </properties>
         </profile>
         <profile>
