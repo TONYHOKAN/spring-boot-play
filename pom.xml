@@ -97,6 +97,7 @@
         </dependency>
     </dependencies>
 
+    <!-- we can config profile to define different env dependency -->
     <profiles>
         <profile>
             <id>local</id>
@@ -106,6 +107,17 @@
             <properties>
                 <profileActive>local</profileActive>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>dev</id>
