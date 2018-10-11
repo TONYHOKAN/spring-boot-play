@@ -1,5 +1,6 @@
 package com.example.springbootplay.webservicecontroller;
 
+import com.example.springbootplay.configuration.properties.CustomizeProperties;
 import com.example.springbootplay.mapper.UserMapper;
 import com.example.springbootplay.model.User;
 import io.swagger.annotations.Api;
@@ -33,6 +34,9 @@ public class UserController
 
 	@Autowired
 	private UserMapper userMapper;
+
+	@Autowired
+	private CustomizeProperties customizeProperties;
 
 	@ApiOperation(value = "getAllUser", notes = "Get All User")
 	@GetMapping("")
@@ -85,6 +89,8 @@ public class UserController
 	@GetMapping("helloWorld")
 	public String helloWorld()
 	{
+		logger.info("customizeProperties " + customizeProperties);
+
 		return "Hellow World!";
 	}
 }
