@@ -101,6 +101,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3-version}</version>
         </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.0.3</version>
+        </dependency>
     </dependencies>
 
     <!-- we can config profile to define different env dependency -->

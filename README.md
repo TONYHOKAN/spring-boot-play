@@ -105,6 +105,11 @@ uncomment below in application.properties
 #server.ssl.key-password=local_ssl
 ```
 
+# Spring-boot admin
+
+There is very good monitoring console using actuator endpoints to visualize data 
+
+http://codecentric.github.io/spring-boot-admin/2.0.3/#getting-started
 
 # Hotswap
 
