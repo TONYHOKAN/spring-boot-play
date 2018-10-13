@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+    db:
+        image: mysql:8.0.12
+        env_file: .env
+        volumes:
+            - "${DB_DATA_PATH}:/var/lib/mysql"
+        # ref: https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
+        command: --transaction-isolation=READ-COMMITTED --lower-case-table-names=1 --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
+        environment:  # initial root and user create for mysql
+            MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+        ports:
+            - 3307:3306
+        networks:
+            - spring_boot_play
+        container_name: spring_boot_play_db
+networks:
+    spring_boot_play:

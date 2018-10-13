@@ -26,6 +26,7 @@
         <!--run test manually with: mvn test -Dmaven.test.skip=false-->
         <maven.test.skip>true</maven.test.skip>
         <commons-lang3-version>3.8</commons-lang3-version>
+        <mysql-connector-java-version>8.0.12</mysql-connector-java-version>
     </properties>
 
     <!--check this for what dependencies u can override https://github.com/spring-projects/spring-boot/blob/v2.0.5.RELEASE/spring-boot-project/spring-boot-dependencies/pom.xml -->
@@ -69,6 +70,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java-version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
