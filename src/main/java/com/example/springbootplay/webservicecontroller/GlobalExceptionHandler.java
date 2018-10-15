@@ -1,7 +1,7 @@
 package com.example.springbootplay.webservicecontroller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class GlobalExceptionHandler
 {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger LOG = LogManager.getLogger(this.getClass());
 
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	ResponseEntity<CustomizeErrorResponse> handleException(Exception e)
 	{
-		logger.error(e.getMessage(), e);
+		LOG.error(e.getMessage(), e);
 
 		CustomizeErrorResponse response = new CustomizeErrorResponse();
 		response.setErrorCode("500");

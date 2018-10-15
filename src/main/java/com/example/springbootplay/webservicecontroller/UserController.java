@@ -7,8 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 public class UserController
 {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger LOG = LogManager.getLogger(this.getClass());
 
 	@Autowired
 	private UserMapper userMapper;
@@ -50,7 +50,7 @@ public class UserController
 	@GetMapping("/{id}")
 	public User getUser(@PathVariable Long id)
 	{
-		logger.info(String.format("getUser: %s", id));
+		LOG.info(String.format("getUser: %s", id));
 		User u = userMapper.findById(id);
 		return u;
 	}
@@ -89,7 +89,7 @@ public class UserController
 	@GetMapping("helloWorld")
 	public String helloWorld()
 	{
-		logger.info("customizeProperties " + customizeProperties);
+		LOG.info("customizeProperties " + customizeProperties);
 
 		return "Hellow World!";
 	}
