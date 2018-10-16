@@ -26,6 +26,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Tony Ng on 13/10/2018.
+ * how to write test case ref:
+ * https://docs.spring.io/spring-integration/reference/html/testing.html
+ * https://github.com/spring-projects/spring-integration-samples/tree/master/basic/testing-examples
  */
 @Configuration
 @EnableIntegration

@@ -1,13 +1,24 @@
 package com.example.springbootplay.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+
 /**
  * Created by Tony Ng on 15/10/2018.
+ * @JsonPropertyOrder to make sure mapping csv column to correct attribute sequence
  */
-public class TestFileData extends BaseData
+@JsonPropertyOrder({"id_with_different key", "Name with different key", "Name with different_KEY"})
+public class TestFileTabularData extends BaseData
 {
 
+	@JsonProperty("id_with_different key")
 	private String id;
+
+	@JsonProperty("Name with different key")
 	private String name;
+
+	@JsonProperty("content with different_KEY")
 	private String content;
 
 	public String getId()

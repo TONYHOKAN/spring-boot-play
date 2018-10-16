@@ -25,4 +25,4 @@
 /.nb-gradle/
 
 **/config.local/
-**/integration/
+**/file_integration/

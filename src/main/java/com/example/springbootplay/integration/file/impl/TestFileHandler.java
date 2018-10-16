@@ -1,6 +1,6 @@
 package com.example.springbootplay.integration.file.impl;
 
-import com.example.springbootplay.data.TestFileData;
+import com.example.springbootplay.data.TestFileTabularData;
 import com.example.springbootplay.integration.file.FileHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,10 +33,10 @@ public class TestFileHandler implements FileHandler
 		{
 			// do business logic
 
-			List<TestFileData> testFileDataList = TabularFileReader.mapCSV(file, TestFileData.class);
+			List<TestFileTabularData> testFileTabularDataList = TabularFileReader.readCSV(file, TestFileTabularData.class);
 
-			testFileDataList.forEach(testFileData -> {
-				LOG.info(testFileData);
+			testFileTabularDataList.forEach(testFileTabularData -> {
+				LOG.info(testFileTabularData);
 			});
 
 		}

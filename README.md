@@ -124,6 +124,10 @@ In Intellij, we need start the project with run configuration `spring-boot-play 
 configure FileIntegrationConfig to set up channel, channel chain now is
  
  `inFileChannel->processFileChannel->${businessLogicChannel}->doneFileChannel`
+ 
+tutorial: https://dzone.com/articles/message-processing-spring
+
+doc: https://docs.spring.io/spring-integration/reference/html/files.html
 
 # Config properties
 
