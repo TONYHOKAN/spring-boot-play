@@ -119,6 +119,12 @@ In Intellij, we need start the project with run configuration `spring-boot-play 
 
 # Project Design
 
+# Spring File Integration
+
+configure FileIntegrationConfig to set up channel, channel chain now is
+ 
+ `inFileChannel->processFileChannel->${businessLogicChannel}->doneFileChannel`
+
 # Config properties
 
 https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html

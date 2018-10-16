@@ -1,5 +1,6 @@
 package com.example.springbootplay.integration.file.impl;
 
+import com.example.springbootplay.data.TestFileData;
 import com.example.springbootplay.integration.file.FileHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageChannel;
 
 import java.io.File;
+import java.util.List;
 
 
 /**
@@ -25,11 +27,18 @@ public class TestFileHandler implements FileHandler
 	@ServiceActivator(inputChannel = "testFileHandlerChannel", outputChannel = "doneFileChannel")
 	public File process(File file) throws Exception
 	{
-		LOG.info("Start processing {}",  file.getAbsolutePath());
+		LOG.info("Start processing {}", file.getAbsolutePath());
 
 		try
 		{
 			// do business logic
+
+			List<TestFileData> testFileDataList = TabularFileReader.mapCSV(file, TestFileData.class);
+
+			testFileDataList.forEach(testFileData -> {
+				LOG.info(testFileData);
+			});
+
 		}
 		catch (Exception e)
 		{
@@ -39,6 +48,13 @@ public class TestFileHandler implements FileHandler
 		return file;
 	}
 
+	/**
+	 * define file handler channel inside handler class to make it easy to understand
+	 * @return
+	 */
 	@Bean
-	public MessageChannel testFileHandlerChannel() { return new DirectChannel(); }
+	public MessageChannel testFileHandlerChannel()
+	{
+		return new DirectChannel();
+	}
 }
