@@ -41,7 +41,7 @@ public class TabularFileReader
 
 		CsvMapper mapper = new CsvMapper();
 		// withHeader to delete header line
-		CsvSchema schema = mapper.schemaFor(mapClass).withHeader();
+		CsvSchema schema = mapper.schemaFor(mapClass).withSkipFirstDataRow(true);
 		if (TSV_FILED_SEPARATOR == delimiter)
 		{
 			schema.withColumnSeparator(CSV_FILED_SEPARATOR);

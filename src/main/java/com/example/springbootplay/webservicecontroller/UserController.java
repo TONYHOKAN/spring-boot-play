@@ -1,6 +1,8 @@
 package com.example.springbootplay.webservicecontroller;
 
 import com.example.springbootplay.configuration.properties.CustomizeProperties;
+import com.example.springbootplay.data.TestFileTabularData;
+import com.example.springbootplay.integration.file.impl.TabularFileWriter;
 import com.example.springbootplay.mapper.UserMapper;
 import com.example.springbootplay.model.User;
 import io.swagger.annotations.Api;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -92,5 +95,27 @@ public class UserController
 		LOG.info("customizeProperties " + customizeProperties);
 
 		return "Hellow World!";
+	}
+
+	@GetMapping("testCSV")
+	public void testCSV() throws Exception
+	{
+		LOG.info("customizeProperties " + customizeProperties);
+
+		List<TestFileTabularData> testFileTabularDatas = new ArrayList<>();
+		TestFileTabularData testFileTabularData = new TestFileTabularData();
+		testFileTabularData.setId("1");
+		testFileTabularData.setContent("2");
+		testFileTabularData.setName("3");
+		testFileTabularDatas.add(testFileTabularData);
+
+		TestFileTabularData testFileTabularData2 = new TestFileTabularData();
+		testFileTabularData2.setId("a");
+		testFileTabularData2.setContent("b");
+		testFileTabularData2.setName("c");
+		testFileTabularDatas.add(testFileTabularData2);
+		String projectRoot = System.getProperty("user.dir");
+		TabularFileWriter.writeCSV(projectRoot, "testFile", testFileTabularDatas);
+		TabularFileWriter.writeTSV(projectRoot, "testFile", testFileTabularDatas);
 	}
 }
