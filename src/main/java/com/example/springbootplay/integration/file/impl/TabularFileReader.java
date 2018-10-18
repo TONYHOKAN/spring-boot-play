@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +39,7 @@ public class TabularFileReader
 		LOG.debug("Start reading file [{}] using Object Type [{}]", file, mapClass);
 
 		CsvMapper mapper = new CsvMapper();
-		// withHeader to delete header line
+		// withSkipFirstDataRow to delete header line
 		CsvSchema schema = mapper.schemaFor(mapClass).withSkipFirstDataRow(true);
 		if (TSV_FILED_SEPARATOR == delimiter)
 		{

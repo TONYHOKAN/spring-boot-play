@@ -6,19 +6,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * Created by Tony Ng on 15/10/2018.
- * @JsonPropertyOrder to make sure mapping csv column to correct attribute sequence
+ * attribute sequence does not matter
+ * @JsonPropertyOrder to make sure mapping csv column number(header ignored) in read/write to correct attribute sequence, must same with name in @JsonProperty
+ * @JsonProperty for writing CSV as header name
  */
-@JsonPropertyOrder({"id_with_different key", "Name with different key", "Name with different_KEY"})
+@JsonPropertyOrder({"id header", "name header", "content header"})
 public class TestFileTabularData extends BaseData
 {
 
-	@JsonProperty("id_with_different key")
+	@JsonProperty("id header")
 	private String id;
 
-	@JsonProperty("Name with different key")
+	@JsonProperty("name header")
 	private String name;
 
-	@JsonProperty("content with different_KEY")
+	@JsonProperty("content header")
 	private String content;
 
 	public String getId()
