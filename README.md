@@ -129,6 +129,14 @@ tutorial: https://dzone.com/articles/message-processing-spring
 
 doc: https://docs.spring.io/spring-integration/reference/html/files.html
 
+# RestTemplate
+
+add all customize to `RestClientConfig` using RestTemplateBuilder to build the template.
+
+for the client store business logic, add new class to path `com.example.springbootplay.httpclient`
+
+default we have LogRequestDetailHttpRequestInterceptor for all http request out bound. If need special handing, need add the Interceptor when injecting RestTemplate bean
+
 # Config properties
 
 https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html

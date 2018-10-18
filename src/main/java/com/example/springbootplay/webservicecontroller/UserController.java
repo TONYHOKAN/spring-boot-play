@@ -2,6 +2,8 @@ package com.example.springbootplay.webservicecontroller;
 
 import com.example.springbootplay.configuration.properties.CustomizeProperties;
 import com.example.springbootplay.data.TestFileTabularData;
+import com.example.springbootplay.data.UserData;
+import com.example.springbootplay.httpclient.LocalhostClient;
 import com.example.springbootplay.integration.file.impl.TabularFileWriter;
 import com.example.springbootplay.mapper.UserMapper;
 import com.example.springbootplay.model.User;
@@ -12,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +44,9 @@ public class UserController
 	@Autowired
 	private CustomizeProperties customizeProperties;
 
+	@Autowired
+	private LocalhostClient localhostClient;
+
 	@ApiOperation(value = "getAllUser", notes = "Get All User")
 	@GetMapping("")
 	public List<User> getAllUser()
@@ -60,9 +66,13 @@ public class UserController
 
 	@ApiOperation(value = "createUser", notes = "Create User")
 	@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "User")
-	@PostMapping("")
-	public User createUser(@RequestBody User user)
+	@PostMapping(value = "", consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public User createUser(@RequestBody UserData userData)
 	{
+		User user = new User();
+		user.setId(userData.getId());
+		user.setName(userData.getName());
+		user.setAge(userData.getAge());
 		userMapper.insert(user);
 		return userMapper.findById(user.getId());
 	}
@@ -93,6 +103,8 @@ public class UserController
 	public String helloWorld()
 	{
 		LOG.info("customizeProperties " + customizeProperties);
+		localhostClient.checkHealth();
+		localhostClient.createUser();
 
 		return "Hellow World!";
 	}
