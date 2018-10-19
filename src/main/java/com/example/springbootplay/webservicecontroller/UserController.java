@@ -5,8 +5,8 @@ import com.example.springbootplay.data.TestFileTabularData;
 import com.example.springbootplay.data.UserData;
 import com.example.springbootplay.httpclient.LocalhostClient;
 import com.example.springbootplay.integration.file.impl.TabularFileWriter;
-import com.example.springbootplay.mapper.UserMapper;
 import com.example.springbootplay.model.User;
+import com.example.springbootplay.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -39,7 +39,7 @@ public class UserController
 	private Logger LOG = LogManager.getLogger(this.getClass());
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserService userService;
 
 	@Autowired
 	private CustomizeProperties customizeProperties;
@@ -51,7 +51,7 @@ public class UserController
 	@GetMapping("")
 	public List<User> getAllUser()
 	{
-		return userMapper.findAll();
+		return userService.findAll();
 	}
 
 	@ApiOperation(value = "getUser", notes = "Get user")
@@ -60,7 +60,7 @@ public class UserController
 	public User getUser(@PathVariable Long id)
 	{
 		LOG.info(String.format("getUser: %s", id));
-		User u = userMapper.findById(id);
+		User u = userService.findById(id);
 		return u;
 	}
 
@@ -74,8 +74,8 @@ public class UserController
 		user.setId(userData.getId());
 		user.setName(userData.getName());
 		user.setAge(userData.getAge());
-		userMapper.insert(user);
-		userMapper.findById(user.getId());
+		userService.insert(user);
+		userService.findById(user.getId());
 		return userData;
 	}
 
@@ -88,8 +88,8 @@ public class UserController
 	public User updateUser(@PathVariable Long id, @RequestBody User user)
 	{
 		user.setId(id);
-		userMapper.update(user);
-		return userMapper.findById(user.getId());
+		userService.update(user);
+		return userService.findById(user.getId());
 	}
 
 	@ApiOperation(value = "deleteUser", notes = "Delete User")
@@ -97,7 +97,7 @@ public class UserController
 	@DeleteMapping("/{id}")
 	public void deleteUser(@PathVariable Long id)
 	{
-		userMapper.delete(id);
+		userService.delete(id);
 		return;
 	}
 

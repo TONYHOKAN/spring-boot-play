@@ -117,8 +117,6 @@ Make use of `spring-boot-devtools`, when start with `mvn clean install -P local 
 
 In Intellij, we need start the project with run configuration `spring-boot-play [spring-boot:run]`, create you own if not exist, then follow https://stackoverflow.com/a/12744431/5824101 to enable auto compile 
 
-# Project Design
-
 # Spring File Integration
 
 configure FileIntegrationConfig to set up channel, channel chain now is
@@ -140,3 +138,13 @@ default we have LogRequestDetailHttpRequestInterceptor for all http request out 
 # Config properties
 
 https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+# Project Design
+
+TBC
+
+# MISC
+
+## code template
+
+It is suggest that using [CodeGen](https://github.com/hykes/CodeGen) intelliJ plug to create dao-service-model template 
