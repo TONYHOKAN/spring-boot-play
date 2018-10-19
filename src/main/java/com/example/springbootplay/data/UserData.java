@@ -1,5 +1,7 @@
 package com.example.springbootplay.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -17,18 +19,21 @@ public class UserData extends BaseData
 	private Integer age;
 
 	@XmlElement
+	@JsonProperty("id")
 	public Long getId()
 	{
 		return id;
 	}
 
 	@XmlElement
+	@JsonProperty("name")
 	public String getName()
 	{
 		return name;
 	}
 
 	@XmlElement
+	@JsonProperty("age")
 	public Integer getAge()
 	{
 		return age;

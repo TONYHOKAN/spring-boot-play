@@ -36,12 +36,11 @@ public class LocalhostClientImpl implements LocalhostClient
 	{
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_XML_VALUE + "; charset=UTF-8");
-//		headers.setContentType(MediaType.APPLICATION_XML);
 		UserData userData = new UserData();
 		userData.setName("hokan");
 		userData.setAge(15);
 		HttpEntity<UserData> request = new HttpEntity<UserData>(userData, headers);
-		ResponseEntity<String> response = localhostRestTemplate.postForEntity("/user", request, String.class);
+		ResponseEntity<UserData> response = localhostRestTemplate.postForEntity("/user", request, UserData.class);
 		LOG.info("createUser: " + response);
 	}
 }

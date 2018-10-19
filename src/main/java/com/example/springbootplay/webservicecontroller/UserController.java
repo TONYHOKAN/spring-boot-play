@@ -32,7 +32,7 @@ import java.util.List;
  * Created by Tony Ng on 3/10/2018.
  */
 @Api(value = "/user", tags = "UserController")
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 @RestController
 public class UserController
 {
@@ -66,15 +66,17 @@ public class UserController
 
 	@ApiOperation(value = "createUser", notes = "Create User")
 	@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "User")
-	@PostMapping(value = "", consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public User createUser(@RequestBody UserData userData)
+	@PostMapping(value = "", consumes = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = MediaType.APPLICATION_XML_VALUE)
+	public UserData createUser(@RequestBody UserData userData)
 	{
 		User user = new User();
 		user.setId(userData.getId());
 		user.setName(userData.getName());
 		user.setAge(userData.getAge());
 		userMapper.insert(user);
-		return userMapper.findById(user.getId());
+		userMapper.findById(user.getId());
+		return userData;
 	}
 
 	@ApiOperation(value = "updateUser", notes = "Update User")
