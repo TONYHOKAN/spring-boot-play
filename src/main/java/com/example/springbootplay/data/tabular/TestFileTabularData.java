@@ -1,5 +1,6 @@
-package com.example.springbootplay.data;
+package com.example.springbootplay.data.tabular;
 
+import com.example.springbootplay.data.BaseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

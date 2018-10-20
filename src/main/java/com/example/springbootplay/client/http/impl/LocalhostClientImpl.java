@@ -1,7 +1,7 @@
-package com.example.springbootplay.httpclient.impl;
+package com.example.springbootplay.client.http.impl;
 
-import com.example.springbootplay.data.UserData;
-import com.example.springbootplay.httpclient.LocalhostClient;
+import com.example.springbootplay.data.dto.UserData;
+import com.example.springbootplay.client.http.LocalhostClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

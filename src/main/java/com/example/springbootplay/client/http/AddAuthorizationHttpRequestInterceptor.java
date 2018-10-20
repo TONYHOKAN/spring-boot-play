@@ -1,4 +1,4 @@
-package com.example.springbootplay.httpclient;
+package com.example.springbootplay.client.http;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

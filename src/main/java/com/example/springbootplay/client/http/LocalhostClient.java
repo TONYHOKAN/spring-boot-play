@@ -1,4 +1,4 @@
-package com.example.springbootplay.httpclient;
+package com.example.springbootplay.client.http;
 
 /**
  * Created by Tony Ng on 18/10/2018.

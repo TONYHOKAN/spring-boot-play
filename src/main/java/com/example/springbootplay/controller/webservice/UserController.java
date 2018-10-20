@@ -1,10 +1,10 @@
-package com.example.springbootplay.webservicecontroller;
+package com.example.springbootplay.controller.webservice;
 
 import com.example.springbootplay.configuration.properties.CustomizeProperties;
-import com.example.springbootplay.data.TestFileTabularData;
-import com.example.springbootplay.data.UserData;
-import com.example.springbootplay.httpclient.LocalhostClient;
-import com.example.springbootplay.integration.file.impl.TabularFileWriter;
+import com.example.springbootplay.data.tabular.TestFileTabularData;
+import com.example.springbootplay.data.dto.UserData;
+import com.example.springbootplay.client.http.LocalhostClient;
+import com.example.springbootplay.utils.TabularFileWriter;
 import com.example.springbootplay.model.User;
 import com.example.springbootplay.service.UserService;
 import io.swagger.annotations.Api;

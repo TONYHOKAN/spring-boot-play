@@ -1,7 +1,7 @@
 package com.example.springbootplay.configuration;
 
-import com.example.springbootplay.httpclient.AddAuthorizationHttpRequestInterceptor;
-import com.example.springbootplay.httpclient.LogRequestDetailHttpRequestInterceptor;
+import com.example.springbootplay.client.http.AddAuthorizationHttpRequestInterceptor;
+import com.example.springbootplay.client.http.LogRequestDetailHttpRequestInterceptor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

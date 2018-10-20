@@ -1,5 +1,6 @@
-package com.example.springbootplay.data;
+package com.example.springbootplay.data.dto;
 
+import com.example.springbootplay.data.BaseData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlElement;

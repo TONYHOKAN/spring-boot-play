@@ -1,7 +1,8 @@
 package com.example.springbootplay.integration.file.impl;
 
-import com.example.springbootplay.data.TestFileTabularData;
+import com.example.springbootplay.data.tabular.TestFileTabularData;
 import com.example.springbootplay.integration.file.FileHandler;
+import com.example.springbootplay.utils.TabularFileReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
