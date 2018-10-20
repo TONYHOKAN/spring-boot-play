@@ -105,6 +105,14 @@ public class UserController
 	public String helloWorld()
 	{
 		LOG.info("customizeProperties " + customizeProperties);
+
+		return "Hellow World!";
+	}
+
+	@GetMapping("testClient")
+	public String testClient()
+	{
+		LOG.info("customizeProperties " + customizeProperties);
 		localhostClient.checkHealth();
 		localhostClient.createUser();
 

@@ -46,7 +46,7 @@ public class UserControllerTest extends BaseControllerIntegrationTest
 
 		mockUserB = new User();
 		mockUserB.setName("hokan");
-		mockUserB.setAge(15);
+		mockUserB.setAge(29);
 
 		userMapper.insert(mockUserA);
 		userMapper.insert(mockUserB);
