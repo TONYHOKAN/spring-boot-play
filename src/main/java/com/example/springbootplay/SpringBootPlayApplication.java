@@ -10,7 +10,6 @@ import org.springframework.core.env.Environment;
 
 
 @SpringBootApplication
-@MapperScan("com.example.springbootplay.dao")
 public class SpringBootPlayApplication extends SpringBootServletInitializer
 {
 	@Autowired
