@@ -26,7 +26,7 @@ public class SwaggerConfig
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.example.springbootplay.webservicecontroller"))
+				.apis(RequestHandlerSelectors.basePackage("com.example.springbootplay.controller.webservice"))
 				.paths(PathSelectors.any())
 				.build();
 	}
