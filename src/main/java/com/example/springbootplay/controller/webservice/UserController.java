@@ -1,12 +1,12 @@
 package com.example.springbootplay.controller.webservice;
 
-import com.example.springbootplay.configuration.properties.CustomizeProperties;
-import com.example.springbootplay.data.tabular.TestFileTabularData;
-import com.example.springbootplay.data.dto.UserData;
 import com.example.springbootplay.client.http.LocalhostClient;
-import com.example.springbootplay.utils.TabularFileWriter;
-import com.example.springbootplay.model.User;
+import com.example.springbootplay.configuration.properties.CustomizeProperties;
+import com.example.springbootplay.data.dto.UserData;
+import com.example.springbootplay.data.tabular.TestFileTabularData;
+import com.example.springbootplay.model.UserModel;
 import com.example.springbootplay.service.UserService;
+import com.example.springbootplay.utils.TabularFileWriter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -49,7 +49,7 @@ public class UserController
 
 	@ApiOperation(value = "getAllUser", notes = "Get All User")
 	@GetMapping("")
-	public List<User> getAllUser()
+	public List<UserModel> getAllUser()
 	{
 		return userService.findAll();
 	}
@@ -57,43 +57,43 @@ public class UserController
 	@ApiOperation(value = "getUser", notes = "Get user")
 	@ApiImplicitParam(name = "id", value = "ID", required = true, dataType = "Long", paramType = "path")
 	@GetMapping("/{id}")
-	public User getUser(@PathVariable Long id)
+	public UserModel getUser(@PathVariable Long id)
 	{
 		LOG.info(String.format("getUser: %s", id));
-		User u = userService.findById(id);
+		UserModel u = userService.findById(id);
 		return u;
 	}
 
 	@ApiOperation(value = "createUser", notes = "Create User")
-	@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "User")
+	@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "UserModel")
 	@PostMapping(value = "", consumes = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = MediaType.APPLICATION_XML_VALUE)
-	public UserData createUser(@RequestBody UserData userData)
+	public UserModel createUser(@RequestBody UserData userData)
 	{
-		User user = new User();
-		user.setId(userData.getId());
-		user.setName(userData.getName());
-		user.setAge(userData.getAge());
-		userService.insert(user);
-		userService.findById(user.getId());
-		return userData;
+		UserModel userModel = new UserModel();
+		userModel.setId(userData.getId());
+		userModel.setName(userData.getName());
+		userModel.setAge(userData.getAge());
+		userService.insert(userModel);
+		userService.findById(userModel.getId());
+		return userModel;
 	}
 
 	@ApiOperation(value = "updateUser", notes = "Update User")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "ID", required = true, dataType = "Long", paramType = "path"),
-			@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "User")
+			@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "UserModel")
 	})
 	@PutMapping("/{id}")
-	public User updateUser(@PathVariable Long id, @RequestBody User user)
+	public UserModel updateUser(@PathVariable Long id, @RequestBody UserModel userModel)
 	{
-		user.setId(id);
-		userService.update(user);
-		return userService.findById(user.getId());
+		userModel.setId(id);
+		userService.update(userModel);
+		return userService.findById(userModel.getId());
 	}
 
 	@ApiOperation(value = "deleteUser", notes = "Delete User")
-	@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "User")
+	@ApiImplicitParam(name = "id", value = "ID", required = true, dataType = "Long", paramType = "path")
 	@DeleteMapping("/{id}")
 	public void deleteUser(@PathVariable Long id)
 	{

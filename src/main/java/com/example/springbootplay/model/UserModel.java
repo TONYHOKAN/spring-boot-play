@@ -1,9 +1,13 @@
 package com.example.springbootplay.model;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
+
 /**
  * Created by Tony Ng on 4/10/2018.
  */
-public class User
+@TableName("user")
+public class UserModel extends BaseModel
 {
 	private Long id;
 	private String name;

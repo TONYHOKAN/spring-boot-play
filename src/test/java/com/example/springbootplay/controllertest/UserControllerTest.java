@@ -1,8 +1,8 @@
 package com.example.springbootplay.controllertest;
 
 import com.example.springbootplay.BaseControllerIntegrationTest;
-import com.example.springbootplay.mapper.UserMapper;
-import com.example.springbootplay.model.User;
+import com.example.springbootplay.dao.UserDao;
+import com.example.springbootplay.model.UserModel;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,11 +27,11 @@ import static org.junit.Assert.assertEquals;
 // ref: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing-spring-boot-applications
 public class UserControllerTest extends BaseControllerIntegrationTest
 {
-	private User mockUserA;
-	private User mockUserB;
+	private UserModel mockUserModelA;
+	private UserModel mockUserModelB;
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserDao userDao;
 
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -40,31 +40,31 @@ public class UserControllerTest extends BaseControllerIntegrationTest
 	public void before()
 	{
 		// if mock data is complex, create data sql and load when setup
-		mockUserA = new User();
-		mockUserA.setName("cyliu");
-		mockUserA.setAge(30);
+		mockUserModelA = new UserModel();
+		mockUserModelA.setName("cyliu");
+		mockUserModelA.setAge(30);
 
-		mockUserB = new User();
-		mockUserB.setName("hokan");
-		mockUserB.setAge(29);
+		mockUserModelB = new UserModel();
+		mockUserModelB.setName("hokan");
+		mockUserModelB.setAge(29);
 
-		userMapper.insert(mockUserA);
-		userMapper.insert(mockUserB);
+		userDao.insert(mockUserModelA);
+		userDao.insert(mockUserModelB);
 	}
 
 	@Test
 	public void testGetAllUser()
 	{
-		ResponseEntity<List<User>> response = restTemplate.exchange(
+		ResponseEntity<List<UserModel>> response = restTemplate.exchange(
 				"/user",
 				HttpMethod.GET,
 				null,
-				new ParameterizedTypeReference<List<User>>(){});
-		List<User> users = response.getBody();
+				new ParameterizedTypeReference<List<UserModel>>(){});
+		List<UserModel> userModels = response.getBody();
 
-		Assert.assertEquals("testGetAllUser in correct user size", 2, users.size());
-		Assert.assertEquals(mockUserA.getName(), users.get(0).getName());
-		Assert.assertEquals(mockUserB.getName(), users.get(1).getName());
+		Assert.assertEquals("testGetAllUser in correct user size", 2, userModels.size());
+		Assert.assertEquals(mockUserModelA.getName(), userModels.get(0).getName());
+		Assert.assertEquals(mockUserModelB.getName(), userModels.get(1).getName());
 	}
 
 	@Test
@@ -81,7 +81,7 @@ public class UserControllerTest extends BaseControllerIntegrationTest
 	@After
 	public void after()
 	{
-		userMapper.delete(mockUserA.getId());
-		userMapper.delete(mockUserB.getId());
+		userDao.deleteById(mockUserModelA.getId());
+		userDao.deleteById(mockUserModelB.getId());
 	}
 }

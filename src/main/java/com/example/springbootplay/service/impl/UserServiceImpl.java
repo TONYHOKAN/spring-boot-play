@@ -1,7 +1,7 @@
 package com.example.springbootplay.service.impl;
 
-import com.example.springbootplay.dao.impl.UserDao;
-import com.example.springbootplay.model.User;
+import com.example.springbootplay.dao.UserDao;
+import com.example.springbootplay.model.UserModel;
 import com.example.springbootplay.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Tony Ng on 19/10/2018.
  */
 @Service
-public class UserServiceImpl implements UserService
+public class UserServiceImpl extends BaseServiceImpl<UserDao, UserModel> implements UserService
 {
 	private Logger LOG = LogManager.getLogger(this.getClass());
 
@@ -23,32 +23,38 @@ public class UserServiceImpl implements UserService
 	UserDao userDao;
 
 	@Override
-	public long insert(User user)
+	public long insert(UserModel userModel)
 	{
-		return userDao.insert(user);
+		return userDao.insert(userModel);
 	}
 
 	@Override
-	public long update(User user)
+	public long update(UserModel userModel)
 	{
-		return userDao.update(user);
+		return userDao.updateById(userModel);
 	}
 
 	@Override
-	public User findById(Long id)
+	public UserModel findById(Long id)
 	{
-		return userDao.findById(id);
+		return userDao.selectById(id);
 	}
 
 	@Override
 	public long delete(Long id)
 	{
-		return userDao.delete(id);
+		return userDao.deleteById(id);
 	}
 
 	@Override
-	public List<User> findAll()
+	public List<UserModel> findAll()
 	{
-		return userDao.findAll();
+		return userDao.selectList(null);
+	}
+
+	@Override
+	public UserModel findByName(String name)
+	{
+		return userDao.findByName(name);
 	}
 }

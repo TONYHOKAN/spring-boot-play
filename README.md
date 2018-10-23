@@ -141,6 +141,25 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/common-applicatio
 
 # Project Design
 
+## Controller Layer
+
+provide HTTP call routing end point for external consumer, returning data with POJO. Bridge for Service Layer business logic and external consumer
+
+## Service Layer
+
+provide business logic implementation. Bridge for Controller Layer and Dao Layer
+
+## Dao Layer
+
+bride for Service Layer business and database data access, normally using ORM framework to abstract the conversion of database data and business object. Bridge for Service Layer and database
+
+[mybatis-plus](https://github.com/baomidou/mybatis-plus) is used as ORM stack, read the [API doc](https://mp.baomidou.com/guide/#%E7%89%B9%E6%80%A7) for quick start 
+
+## Utils 
+
+stateless function that do not keep any information and not reply on any Service Layer business logic 
+
+
 TBC
 
 # MISC

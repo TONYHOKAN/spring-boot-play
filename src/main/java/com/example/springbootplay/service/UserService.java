@@ -1,6 +1,6 @@
 package com.example.springbootplay.service;
 
-import com.example.springbootplay.model.User;
+import com.example.springbootplay.model.UserModel;
 
 import java.util.List;
 
@@ -8,15 +8,17 @@ import java.util.List;
 /**
  * Created by Tony Ng on 19/10/2018.
  */
-public interface UserService
+public interface UserService extends BaseService<UserModel>
 {
-	long insert(User user);
+	long insert(UserModel userModel);
 
-	long update(User user);
+	long update(UserModel userModel);
 
-	User findById(Long id);
+	UserModel findById(Long id);
 
 	long delete(Long id);
 
-	List<User> findAll();
+	List<UserModel> findAll();
+
+	UserModel findByName(String name);
 }
