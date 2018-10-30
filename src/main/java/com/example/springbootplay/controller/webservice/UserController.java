@@ -68,15 +68,18 @@ public class UserController
 	@ApiImplicitParam(name = "user", value = "User", required = true, dataType = "UserModel")
 	@PostMapping(value = "", consumes = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = MediaType.APPLICATION_XML_VALUE)
-	public UserModel createUser(@RequestBody UserData userData)
+	public UserData createUser(@RequestBody UserData userData)
 	{
 		UserModel userModel = new UserModel();
-		userModel.setId(userData.getId());
 		userModel.setName(userData.getName());
 		userModel.setAge(userData.getAge());
 		userService.insert(userModel);
-		userService.findById(userModel.getId());
-		return userModel;
+		UserModel userModel1 = userService.findById(userModel.getId());
+
+		userData.setId(userModel1.getId());
+		userData.setName(userModel1.getName());
+		userData.setAge(userModel1.getAge());
+		return userData;
 	}
 
 	@ApiOperation(value = "updateUser", notes = "Update User")
