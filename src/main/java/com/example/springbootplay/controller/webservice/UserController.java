@@ -6,7 +6,10 @@ import com.example.springbootplay.data.dto.UserData;
 import com.example.springbootplay.data.tabular.TestFileTabularData;
 import com.example.springbootplay.model.UserModel;
 import com.example.springbootplay.service.UserService;
-import com.example.springbootplay.utils.TabularFileWriter;
+import com.example.springbootplay.utils.TabularFileUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -22,10 +25,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -105,11 +114,22 @@ public class UserController
 	}
 
 	@GetMapping("helloWorld")
-	public String helloWorld()
+	public String helloWorld(@RequestParam(required = true, value = "policy_number") String policyNumber) throws JsonProcessingException
 	{
-		LOG.info("customizeProperties " + customizeProperties);
+		UserData userData = new UserData();
+		userData.setPurchaseDate(new Date());
+		Map<String, String> insuranceProperty = new HashMap<>();
+		insuranceProperty.put("INSURANCE_PLAN", "ZXS");
+		userData.setInsuranceProperty(insuranceProperty);
 
-		return "Hellow World!";
+		ObjectMapper objectMapper = new ObjectMapper();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZ");
+		objectMapper.setDateFormat(dateFormat);
+		objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+		String result = objectMapper.writeValueAsString(userData);
+		LOG.info(result);
+
+		return result;
 	}
 
 	@GetMapping("testClient")
@@ -138,7 +158,16 @@ public class UserController
 		testFileTabularData2.setName("c");
 		testFileTabularDatas.add(testFileTabularData2);
 		String projectRoot = System.getProperty("user.dir");
-		TabularFileWriter.writeCSV(projectRoot, "testFile", testFileTabularDatas);
-		TabularFileWriter.writeTSV(projectRoot, "testFile", testFileTabularDatas);
+		TabularFileUtils.writeCSV(projectRoot, "testFile", testFileTabularDatas);
+		TabularFileUtils.writeTSV(projectRoot, "testFile", testFileTabularDatas);
+	}
+
+	@ApiOperation(value = "deleteUser", notes = "Delete User")
+	@ApiImplicitParam(name = "id", value = "ID", required = true, dataType = "Long", paramType = "path")
+	@PostMapping("/TravelCare/FWDIssuePolicy")
+	public void postTest()
+	{
+		System.out.println("test timeout");
+		return;
 	}
 }

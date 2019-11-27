@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Date;
+import java.util.Map;
 
 
 /**
@@ -18,6 +20,8 @@ public class UserData extends BaseData
 	private Long id;
 	private String name;
 	private Integer age;
+	private Map<String, String> insuranceProperty;
+	private Date purchaseDate;
 
 	@XmlElement
 	@JsonProperty("id")
@@ -53,5 +57,25 @@ public class UserData extends BaseData
 	public void setAge(Integer age)
 	{
 		this.age = age;
+	}
+
+	public Map<String, String> getInsuranceProperty()
+	{
+		return insuranceProperty;
+	}
+
+	public void setInsuranceProperty(Map<String, String> insuranceProperty)
+	{
+		this.insuranceProperty = insuranceProperty;
+	}
+
+	public Date getPurchaseDate()
+	{
+		return purchaseDate;
+	}
+
+	public void setPurchaseDate(Date purchaseDate)
+	{
+		this.purchaseDate = purchaseDate;
 	}
 }
